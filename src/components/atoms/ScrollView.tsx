@@ -1,6 +1,6 @@
 import {
-  TextInput as RNTextInput,
-  TextInputProps as RNTextInputProps,
+  ScrollView as RNScrollView,
+  ScrollViewProps as RNScrollViewProps,
 } from 'react-native';
 
 import {
@@ -13,18 +13,18 @@ import {
 
 import {Theme} from '../../theme';
 
-export type InputProps = BoxProps<Theme> &
-  VariantProps<Theme, 'inputVariants'> &
-  RNTextInputProps;
+export type ScrollViewProps = BoxProps<Theme> &
+  VariantProps<Theme, 'scrollViewVariants'> &
+  RNScrollViewProps;
 
 const restyleFunctions = [
   ...boxRestyleFunctions,
   createVariant<Theme>({
-    themeKey: 'inputVariants',
+    themeKey: 'scrollViewVariants',
   }) as any,
 ];
 
-export const Input = createRestyleComponent<InputProps, Theme>(
+export const ScrollView = createRestyleComponent<ScrollViewProps, Theme>(
   restyleFunctions,
-  RNTextInput,
+  RNScrollView,
 );

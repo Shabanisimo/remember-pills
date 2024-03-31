@@ -3,7 +3,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {StyleSheet, View} from 'react-native';
 
 import {Counter} from '../molecules';
-import {Button, Input} from '../atoms';
+import {Box, Button, Input} from '../atoms';
 import {IMedicationForm} from '../../models';
 
 type Props = {
@@ -25,37 +25,51 @@ export const MedicationForm = ({onSubmit}: Props) => {
   });
 
   return (
-    <View style={styles.container}>
+    <Box paddingHorizontal="xl" bg="ternary" style={styles.container}>
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          <Input onChangeText={onChange} onBlur={onBlur} value={value} />
+          <Input
+            variant="primary"
+            onChangeText={onChange}
+            onBlur={onBlur}
+            value={value}
+            placeholder="Name"
+          />
         )}
         name="name"
       />
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          <Input onChangeText={onChange} onBlur={onBlur} value={value} />
+          <Input
+            variant="primary"
+            onChangeText={onChange}
+            onBlur={onBlur}
+            value={value}
+            placeholder="Description"
+          />
         )}
         name="description"
       />
-      <Controller
-        control={control}
-        render={({field: {onChange, value}}) => (
-          <Counter value={value} onChange={onChange} />
-        )}
-        name="initialCount"
-      />
-      <Controller
-        control={control}
-        render={({field: {onChange, value}}) => (
-          <Counter value={value} onChange={onChange} />
-        )}
-        name="destinationCount"
-      />
+      <Box variant="row" gap="xl">
+        <Controller
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <Counter value={value} onChange={onChange} />
+          )}
+          name="initialCount"
+        />
+        <Controller
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <Counter value={value} onChange={onChange} />
+          )}
+          name="destinationCount"
+        />
+      </Box>
       <Button title="Add" onPress={onAddMedication} />
-    </View>
+    </Box>
   );
 };
 

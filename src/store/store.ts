@@ -13,18 +13,19 @@ import {
 import {persistor} from './persistor';
 import {AppState} from './app-state';
 
-import {medicationsReducer} from './state';
+import {medicationsReducer, medicationNotesReducer} from './state';
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage: persistor,
   timeout: 0,
-  whitelist: ['medications'],
+  whitelist: ['medications', 'medicationNotes'],
 };
 
 const rootReducer = combineReducers({
   medications: medicationsReducer,
+  medicationNotes: medicationNotesReducer,
 });
 
 const resettableRootReducer = (state: any, action: Action) => {

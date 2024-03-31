@@ -9,6 +9,8 @@ import {
   useBottomSheetSpringConfigs,
 } from '@gorhom/bottom-sheet';
 import type {BottomSheetDefaultBackdropProps} from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types';
+import {useTheme} from '../../theme';
+import {SPACING} from '../../theme/spacing';
 
 export type BottomSheetProps = {
   children: React.ReactNode;
@@ -19,6 +21,7 @@ export type BottomSheetProps = {
 export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
   (props, ref) => {
     const {children, style} = props;
+    const {colors} = useTheme();
 
     const animationConfigs = useBottomSheetSpringConfigs({
       damping: 80,
@@ -51,7 +54,7 @@ export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
           enableDynamicSizing
           enableDismissOnClose
           onDismiss={onDismiss}
-          style={[styles.container, style, {backgroundColor: 'white'}]}
+          style={[styles.container, style, {backgroundColor: colors.ternary}]}
           backgroundComponent={null}
           handleIndicatorStyle={styles.handleStyle}
           backdropComponent={renderBackdrop}
@@ -67,7 +70,8 @@ export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 22,
+    borderTopLeftRadius: SPACING.s,
+    borderTopRightRadius: SPACING.s,
   },
   handleStyle: {
     opacity: 0,

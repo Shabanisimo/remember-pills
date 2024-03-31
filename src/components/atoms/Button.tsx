@@ -1,11 +1,7 @@
 import React from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ViewStyle,
-} from 'react-native';
+import {StyleProp, ViewStyle} from 'react-native';
+
+import {Text, TouchableOpacity} from '.';
 
 type Props = {
   title: string;
@@ -17,24 +13,14 @@ type Props = {
 export const Button = ({title, disabled = false, style, onPress}: Props) => {
   return (
     <TouchableOpacity
-      style={[styles.container, style]}
+      variant="center"
+      height={58}
+      borderRadius={8}
       disabled={disabled}
-      onPress={onPress}>
-      <Text style={styles.title}>{title}</Text>
+      onPress={onPress}
+      bg="secondary"
+      style={style}>
+      <Text variant="button">{title}</Text>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    height: 58,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'red',
-    borderRadius: 8,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: '500',
-  },
-});

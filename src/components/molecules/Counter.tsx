@@ -1,14 +1,18 @@
 import React, {useState} from 'react';
-import {StyleSheet, TextInput, View} from 'react-native';
-import {Button} from '../atoms';
+import {StyleSheet} from 'react-native';
+import {Box, Button, Input} from '../atoms';
 
 type Props = {
   value: number;
-  incrementEnabled?: boolean;
+  incrementDisabled?: boolean;
   onChange: (val: number) => void;
 };
 
-export const Counter = ({value, incrementEnabled = true, onChange}: Props) => {
+export const Counter = ({
+  value,
+  incrementDisabled = false,
+  onChange,
+}: Props) => {
   const [counterValue, setCounterValue] = useState(value.toString());
 
   const onChangeValue = (val: string) => {
@@ -37,30 +41,31 @@ export const Counter = ({value, incrementEnabled = true, onChange}: Props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <Box bg="white" variant="row" borderRadius={10} p="xs">
       <Button style={styles.button} onPress={decreaseValue} title="-" />
-      <TextInput
-        style={styles.inner}
+      <Input
         value={counterValue}
         onChangeText={onChangeValue}
         onBlur={onBlur}
         keyboardType="number-pad"
+        borderLeftWidth={0}
+        height={40}
+        width={40}
+        textAlign="center"
       />
-      <Button style={styles.button} onPress={increaseValue} title="+" />
-    </View>
+      <Button
+        disabled={incrementDisabled}
+        style={styles.button}
+        onPress={increaseValue}
+        title="+"
+      />
+    </Box>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  inner: {
-    borderWidth: 1,
-  },
   button: {
-    width: 40,
-    height: 40,
+    width: 35,
+    height: 35,
   },
 });
