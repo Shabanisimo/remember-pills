@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 
 import {
   createMedicationNote,
@@ -10,6 +10,7 @@ import {Input, Box, TouchableOpacity} from '../../../../components/atoms';
 import {NoteItem} from '../molecules';
 
 import PlusIcon from '../../../../assets/svg/plus.svg';
+import {sortMedicationNotesByDate} from '../../../../utils/sort';
 
 type Props = {
   medicationId: string;
@@ -20,9 +21,14 @@ export const MedicationNotes = ({medicationId}: Props) => {
   const dispatch = useAppDispatch();
   const medicationNotes = useAppSelector(getNoteByMedicationId(medicationId));
 
+  const sortedMedicationNotes = useMemo(() => {
+    return sortMedicationNotesByDate(medicationNotes);
+  }, [medicationNotes]);
+
   const onAddNote = () => {
-    if (!!note) {
-      dispatch(createMedicationNote(medicationId, note));
+    const trimmedNote = note.trim();
+    if (!!trimmedNote) {
+      dispatch(createMedicationNote(medicationId, trimmedNote));
       setNote('');
     }
   };
@@ -30,7 +36,15 @@ export const MedicationNotes = ({medicationId}: Props) => {
   return (
     <Box>
       <Box flex={1} variant="row" gap="s">
-        <Input flex={1} variant="primary" value={note} onChangeText={setNote} />
+        <Input
+          flex={1}
+          variant="primary"
+          value={note}
+          onChangeText={setNote}
+          height={60}
+          placeholder="Enter note"
+          multiline
+        />
         <TouchableOpacity
           onPress={onAddNote}
           variant="center"
@@ -41,7 +55,7 @@ export const MedicationNotes = ({medicationId}: Props) => {
           <PlusIcon />
         </TouchableOpacity>
       </Box>
-      {medicationNotes.map(medicationNote => (
+      {sortedMedicationNotes?.map(medicationNote => (
         <NoteItem
           createdAt={medicationNote.createdAt}
           text={medicationNote.text}

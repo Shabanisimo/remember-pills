@@ -55,13 +55,18 @@ export const Deatils = ({route}: RootStackScreenProps<'MedicationDetails'>) => {
             <Text color="black" variant="description">
               {medication?.description}
             </Text>
-            <Counter
-              onChange={onChange}
-              value={medication?.initialCount}
-              incrementDisabled={
-                medication?.initialCount === medication?.destinationCount
-              }
-            />
+            <Box variant="row">
+              <Counter
+                onChange={onChange}
+                value={medication?.initialCount}
+                incrementDisabled={
+                  medication?.initialCount === medication?.destinationCount
+                }
+              />
+              <Text color="black" variant="bold" ml="s">
+                / {medication.destinationCount}
+              </Text>
+            </Box>
             <MedicationNotes medicationId={medicationId} />
           </ScrollView>
         </Box>

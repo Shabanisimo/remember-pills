@@ -1,3 +1,5 @@
+To run React-Native project you should have installed tools for this. If u didn't install please follow this [topic](https://reactnative.dev/docs/environment-setup?platform=android) to install all tools and configure them.
+
 To start Metro, run the following command from the _root_ of your React Native project:
 
 ```bash

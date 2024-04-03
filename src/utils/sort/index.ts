@@ -10,10 +10,10 @@ export const sortMedicationsByUpdateDate = (medications: IMedication[]) => {
     .sort((a, b) => Number(b.isActive) - Number(a.isActive));
 };
 
-export const sertMedicationNotesByDate = (
+export const sortMedicationNotesByDate = (
   medicationNotes?: IMedicationNote[],
 ) => {
-  return medicationNotes?.sort((a, b) => {
+  return medicationNotes?.slice().sort((a, b) => {
     return new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf();
   });
 };

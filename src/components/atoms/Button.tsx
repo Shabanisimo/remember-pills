@@ -19,16 +19,21 @@ export const Button = ({
   onPress,
   ...props
 }: Props) => {
+  const onHandlePress = () => {
+    if (!disabled) {
+      onPress();
+    }
+  };
   return (
     <TouchableOpacity
       variant="center"
       height={58}
       borderRadius={8}
-      disabled={disabled}
-      onPress={onPress}
+      onPress={onHandlePress}
       bg="secondary"
       style={style}
-      opacity={disabled ? 0.7 : 1}
+      activeOpacity={disabled ? 0.6 : 0.2}
+      opacity={disabled ? 0.6 : 1}
       {...props}>
       <Text variant="button">{title}</Text>
     </TouchableOpacity>
