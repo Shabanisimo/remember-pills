@@ -1,5 +1,5 @@
 import React, {useMemo, useRef} from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList} from 'react-native';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 import {MedicationItem} from '../components/molecules';
@@ -8,7 +8,6 @@ import {Button, SafeAreaView} from '../../../components/atoms';
 import {useAppSelector} from '../../../store';
 import {IMedication} from '../../../models';
 import {sortMedicationsByUpdateDate} from '../../../utils/sort';
-import {SPACING} from '../../../theme/spacing';
 
 export const UserMedication = () => {
   const addMedicationModalRef = useRef<BottomSheetModal>(null);
@@ -25,23 +24,15 @@ export const UserMedication = () => {
   );
 
   return (
-    <SafeAreaView flex={1}>
+    <SafeAreaView flex={1} padding="xl" gap="m">
       <FlatList
         data={sortedMedications}
         renderItem={({item}: {item: IMedication}) => (
           <MedicationItem {...item} />
         )}
-        contentContainerStyle={styles.container}
       />
       <Button title="Add medication" onPress={onOpenMedicationModal} />
       <AddMedicationModal ref={addMedicationModalRef} />
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: SPACING.xl,
-    gap: SPACING.m,
-  },
-});

@@ -3,14 +3,22 @@ import {StyleProp, ViewStyle} from 'react-native';
 
 import {Text, TouchableOpacity} from '.';
 
+type RestyleProps = React.ComponentProps<typeof TouchableOpacity>;
+
 type Props = {
   title: string;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   onPress: () => void;
-};
+} & RestyleProps;
 
-export const Button = ({title, disabled = false, style, onPress}: Props) => {
+export const Button = ({
+  title,
+  disabled = false,
+  style,
+  onPress,
+  ...props
+}: Props) => {
   return (
     <TouchableOpacity
       variant="center"
@@ -19,7 +27,9 @@ export const Button = ({title, disabled = false, style, onPress}: Props) => {
       disabled={disabled}
       onPress={onPress}
       bg="secondary"
-      style={style}>
+      style={style}
+      opacity={disabled ? 0.7 : 1}
+      {...props}>
       <Text variant="button">{title}</Text>
     </TouchableOpacity>
   );

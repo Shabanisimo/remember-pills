@@ -1,3 +1,4 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RouteNames} from './routes';
 
 export type ScreensParams = {
@@ -6,3 +7,6 @@ export type ScreensParams = {
     medicationId: string;
   };
 };
+
+export type RootStackScreenProps<ScreenName extends keyof ScreensParams> =
+  NativeStackScreenProps<ScreensParams, ScreenName>;

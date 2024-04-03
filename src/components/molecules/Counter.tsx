@@ -1,17 +1,23 @@
 import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
-import {Box, Button, Input} from '../atoms';
+import {Box, Button, Input, Text} from '../atoms';
 
 type Props = {
   value: number;
+  decreaseDisabled?: boolean;
   incrementDisabled?: boolean;
+  placeholder?: string;
+  editable?: boolean;
   onChange: (val: number) => void;
 };
 
 export const Counter = ({
   value,
+  placeholder,
+  decreaseDisabled = false,
   incrementDisabled = false,
   onChange,
+  editable = false,
 }: Props) => {
   const [counterValue, setCounterValue] = useState(value.toString());
 
@@ -41,24 +47,33 @@ export const Counter = ({
   };
 
   return (
-    <Box bg="white" variant="row" borderRadius={10} p="xs">
-      <Button style={styles.button} onPress={decreaseValue} title="-" />
-      <Input
-        value={counterValue}
-        onChangeText={onChangeValue}
-        onBlur={onBlur}
-        keyboardType="number-pad"
-        borderLeftWidth={0}
-        height={40}
-        width={40}
-        textAlign="center"
-      />
-      <Button
-        disabled={incrementDisabled}
-        style={styles.button}
-        onPress={increaseValue}
-        title="+"
-      />
+    <Box width={118}>
+      {!!placeholder && <Text color="black">{placeholder}</Text>}
+      <Box bg="white" variant="row" borderRadius={10} p="xs">
+        <Button
+          disabled={value === 0 || decreaseDisabled}
+          style={styles.button}
+          onPress={decreaseValue}
+          title="-"
+        />
+        <Input
+          value={counterValue}
+          onChangeText={onChangeValue}
+          onBlur={onBlur}
+          keyboardType="number-pad"
+          borderLeftWidth={0}
+          height={40}
+          width={40}
+          textAlign="center"
+          editable={editable}
+        />
+        <Button
+          disabled={incrementDisabled}
+          style={styles.button}
+          onPress={increaseValue}
+          title="+"
+        />
+      </Box>
     </Box>
   );
 };

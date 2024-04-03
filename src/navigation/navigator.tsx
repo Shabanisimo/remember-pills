@@ -14,7 +14,10 @@ export const RootNavigator = () => {
     <NavigationContainer
       initialState={initialState}
       onStateChange={onStateChange}>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         <Stack.Screen
           name={RouteNames.UserMedication}
           component={UserMedication}

@@ -16,7 +16,7 @@ export const AddMedicationModal = forwardRef<BottomSheetModal>((_, ref) => {
 
   const onSubmit = (data: IMedicationForm) => {
     dispatch(createMedication(data));
-    handleClose();
+    setTimeout(() => handleClose(), 50);
   };
 
   return (
