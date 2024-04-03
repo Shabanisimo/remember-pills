@@ -19,30 +19,26 @@ export const Counter = ({
   onChange,
   editable = false,
 }: Props) => {
-  const [counterValue, setCounterValue] = useState(value.toString());
+  const [counterValue, setCounterValue] = useState(value);
 
-  const onChangeValue = (val: string) => {
+  const onChangeValue = (val: number) => {
     setCounterValue(val);
-    const newVal = Number(val);
-    onChange(newVal);
+    onChange(val);
   };
 
   const onBlur = () => {
     if (!counterValue) {
-      setCounterValue('0');
-      onChange(0);
+      onChangeValue(0);
     }
   };
 
   const increaseValue = () => {
-    setCounterValue((Number(counterValue) + 1).toString());
-    onChange(value + 1);
+    onChangeValue(value + 1);
   };
 
   const decreaseValue = () => {
     if (value > 0) {
-      setCounterValue((Number(counterValue) - 1).toString());
-      onChange(value - 1);
+      onChangeValue(value - 1);
     }
   };
 
@@ -57,8 +53,7 @@ export const Counter = ({
           title="-"
         />
         <Input
-          value={counterValue}
-          onChangeText={onChangeValue}
+          value={counterValue?.toString()}
           onBlur={onBlur}
           keyboardType="number-pad"
           borderLeftWidth={0}

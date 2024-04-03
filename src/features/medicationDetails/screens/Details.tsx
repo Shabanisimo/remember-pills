@@ -1,4 +1,6 @@
 import React, {useCallback, useRef} from 'react';
+import {StyleSheet} from 'react-native';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 import {
   getMedicationById,
@@ -9,11 +11,9 @@ import {
 import {MedicationNotes, UpdateMedicationModal} from '../components/templates';
 import {Box, SafeAreaView, ScrollView, Text} from '../../../components/atoms';
 import {RootStackScreenProps} from '../../../navigation/types';
-import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import {Header} from '../components/organisms';
 import {SPACING} from '../../../theme/spacing';
 import {Counter} from '../../../components/molecules';
-import {StyleSheet} from 'react-native';
 
 export const Deatils = ({route}: RootStackScreenProps<'MedicationDetails'>) => {
   const {medicationId} = route.params;
@@ -64,7 +64,7 @@ export const Deatils = ({route}: RootStackScreenProps<'MedicationDetails'>) => {
                 }
               />
               <Text color="black" variant="bold" ml="s">
-                / {medication.destinationCount}
+                / {medication?.destinationCount}
               </Text>
             </Box>
             <MedicationNotes medicationId={medicationId} />

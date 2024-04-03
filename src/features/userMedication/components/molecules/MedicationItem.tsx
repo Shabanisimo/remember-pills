@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import Animated, {
   SlideInRight,
@@ -32,8 +32,9 @@ export const MedicationItem = ({index = 1, ...props}: Props) => {
   const dispatch = useAppDispatch();
   const navigation =
     useNavigation<
-      NativeStackNavigationProp<ScreensParams, typeof RouteNames.UserMedication>
+      StackNavigationProp<ScreensParams, typeof RouteNames.UserMedication>
     >();
+
   const {name, description, initialCount, destinationCount, isActive, id} =
     props;
 
