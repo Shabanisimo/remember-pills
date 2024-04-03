@@ -17,4 +17,17 @@ export const InputVariants = {
     lineHeight: 16,
     backgroundColor: 'ternary',
   },
+  multiline: {
+    fontWeight: '400',
+    borderWidth: 1,
+    borderColor: 'secondary',
+    borderRadius: 8,
+    paddingHorizontal: 'l',
+    paddingVertical: 'm',
+    fontSize: 14,
+    lineHeight: 16,
+    backgroundColor: 'ternary',
+    height: 80,
+    textAlignVertical: 'top',
+  },
 };

@@ -38,10 +38,9 @@ export const MedicationNotes = ({medicationId}: Props) => {
       <Box flex={1} variant="row" gap="s">
         <Input
           flex={1}
-          variant="primary"
+          variant="multiline"
           value={note}
           onChangeText={setNote}
-          height={60}
           placeholder="Enter note"
           multiline
         />
@@ -59,6 +58,7 @@ export const MedicationNotes = ({medicationId}: Props) => {
         <NoteItem
           createdAt={medicationNote.createdAt}
           text={medicationNote.text}
+          key={medicationNote.createdAt}
         />
       ))}
     </Box>

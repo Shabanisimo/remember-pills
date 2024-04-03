@@ -4,4 +4,5 @@ export const COLORS = {
   ternary: '#F4F8FA',
   white: '#FFFFFF',
   black: '#1D1D1D',
+  danger: '#E3242B',
 };

@@ -27,4 +27,9 @@ export const TextVariants = {
     fontWeight: '600',
     letterSpacing: 0.04,
   },
+  error: {
+    fontSize: 12,
+    lineHeight: 14,
+    color: 'danger',
+  },
 };

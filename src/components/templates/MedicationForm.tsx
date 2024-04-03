@@ -1,9 +1,9 @@
 import React from 'react';
 import {Controller, useForm, useWatch} from 'react-hook-form';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import {Counter} from '../molecules';
-import {Box, Button, Input} from '../atoms';
+import {Box, Button, Input, Text} from '../atoms';
 import {IMedication, IMedicationForm} from '../../models';
 
 type Props = {
@@ -53,55 +53,56 @@ export const MedicationForm = ({onSubmit, initialData}: Props) => {
         }}
         name="name"
       />
-      {errors.name && <Text />}
+      {errors.name && <Text variant="error">{errors?.name.message}</Text>}
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
           <Input
-            variant="primary"
+            variant="multiline"
             onChangeText={onChange}
             onBlur={onBlur}
             value={value}
             placeholder="Description"
-            height={100}
             multiline
           />
         )}
         name="description"
       />
-      <Box variant="row" gap="xl">
-        <Controller
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Counter
-              value={value}
-              placeholder="Initial Count"
-              onChange={onChange}
-              incrementDisabled={value === destinationCount}
-              editable
-            />
-          )}
-          name="initialCount"
-        />
-        <Controller
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Counter
-              value={value}
-              placeholder="Destination Count"
-              onChange={onChange}
-              decreaseDisabled={value === initialCount}
-              editable
-            />
-          )}
-          rules={{
-            required: {
-              value: true,
-              message: 'Destination Count is ruquired',
-            },
-          }}
-          name="destinationCount"
-        />
+      <Box>
+        <Box variant="row" gap="xl">
+          <Controller
+            control={control}
+            render={({field: {onChange, value}}) => (
+              <Counter
+                value={value}
+                placeholder="Initial Count"
+                onChange={onChange}
+                incrementDisabled={value === destinationCount}
+                editable
+              />
+            )}
+            name="initialCount"
+          />
+          <Controller
+            control={control}
+            render={({field: {onChange, value}}) => (
+              <Counter
+                value={value}
+                placeholder="Destination Count"
+                onChange={onChange}
+                decreaseDisabled={value === initialCount}
+                editable
+              />
+            )}
+            rules={{
+              min: 1,
+            }}
+            name="destinationCount"
+          />
+        </Box>
+        {errors.destinationCount && (
+          <Text variant="error">Destination value should me more than 0</Text>
+        )}
       </Box>
       <Button
         title={initialData ? 'Update' : 'Add'}
