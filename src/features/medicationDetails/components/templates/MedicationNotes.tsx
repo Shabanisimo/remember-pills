@@ -10,7 +10,7 @@ import {Input, Box, TouchableOpacity} from '../../../../components/atoms';
 import {NoteItem} from '../molecules';
 
 import PlusIcon from '../../../../assets/svg/plus.svg';
-import {sortMedicationNotesByDate} from '../../../../utils/sort';
+import {sortMedicationNotesByDate} from '../../../../utils';
 
 type Props = {
   medicationId: string;

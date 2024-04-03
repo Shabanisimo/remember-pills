@@ -8,7 +8,7 @@ import {AddMedicationModal} from '../components/templates/AddMedicationModal';
 import {Button, SafeAreaView} from '../../../components/atoms';
 import {useAppSelector} from '../../../store';
 import {IMedication} from '../../../models';
-import {sortMedicationsByUpdateDate} from '../../../utils/sort';
+import {sortMedicationsByUpdateDate} from '../../../utils';
 import {SPACING} from '../../../theme/spacing';
 
 export const UserMedication = () => {
