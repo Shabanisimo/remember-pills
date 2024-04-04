@@ -49,7 +49,9 @@ export const MedicationItem = ({index = 1, ...props}: Props) => {
         initialCount: val,
       }),
     );
-    active.value = val < destinationCount;
+    if (val < destinationCount !== isActive) {
+      active.value = val < destinationCount;
+    }
   };
 
   const tap = Gesture.Tap()
