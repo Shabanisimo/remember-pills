@@ -1,5 +1,5 @@
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {ScreensParams} from './types';
 
-export const Stack = createStackNavigator<ScreensParams>();
+export const Stack = createNativeStackNavigator<ScreensParams>();

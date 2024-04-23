@@ -1,4 +1,4 @@
-import {StackScreenProps} from '@react-navigation/stack';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RouteNames} from './routes';
 
 export type ScreensParams = {
@@ -9,4 +9,4 @@ export type ScreensParams = {
 };
 
 export type RootStackScreenProps<ScreenName extends keyof ScreensParams> =
-  StackScreenProps<ScreensParams, ScreenName>;
+  NativeStackScreenProps<ScreensParams, ScreenName>;

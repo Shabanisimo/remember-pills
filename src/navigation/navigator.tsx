@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {TransitionPresets} from '@react-navigation/stack';
 
 import {Stack} from './stack';
 import {RouteNames} from './routes';
@@ -18,7 +17,6 @@ export const RootNavigator = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          ...TransitionPresets.SlideFromRightIOS,
         }}>
         <Stack.Screen
           name={RouteNames.UserMedication}
